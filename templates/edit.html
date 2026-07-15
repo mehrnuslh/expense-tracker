@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><title>Edit Expense</title></head>
+<head><title>Edit Expense</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
 <body>
     <h1>Edit Expense</h1>
     <form action="/update/{{ expense['id'] }}" method="POST">

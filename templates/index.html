@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Expense Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <h1>My Expenses</h1>
@@ -13,7 +14,7 @@
     <input type="date" name="date" required>
     <button type="submit">Add Expense</button>
 </form>
-   <table border="1">
+   <table>
     <tr>
         <th>Name</th>
         <th>Amount</th>
