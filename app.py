@@ -17,5 +17,28 @@ def home():
     expenses = get_expenses()
     return render_template('index.html', expenses=expenses)
 
+from flask import Flask, render_template, request, redirect
+
+# ... keep your existing get_expenses() function ...
+
+@app.route('/add', methods=['POST'])
+def add_expense():
+    name = request.form['name']
+    amount = request.form['amount']
+    category = request.form['category']
+    date = request.form['date']
+
+    conn = sqlite3.connect('expenses.db')
+    cursor = conn.cursor()
+    cursor.execute(
+        'INSERT INTO expenses (name, amount, category, date) VALUES (?, ?, ?, ?)',
+        (name, amount, category, date)
+    )
+    conn.commit()
+    conn.close()
+
+    return redirect('/')
+
 if __name__ == '__main__':
     app.run(debug=True)
+
