@@ -13,21 +13,28 @@
     <input type="date" name="date" required>
     <button type="submit">Add Expense</button>
 </form>
-    <table border="1">
-        <tr>
-            <th>Name</th>
-            <th>Amount</th>
-            <th>Category</th>
-            <th>Date</th>
-        </tr>
-        {% for expense in expenses %}
-        <tr>
-            <td>{{ expense['name'] }}</td>
-            <td>${{ expense['amount'] }}</td>
-            <td>{{ expense['category'] }}</td>
-            <td>{{ expense['date'] }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+   <table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Category</th>
+        <th>Date</th>
+        <th>Actions</th>
+    </tr>
+    {% for expense in expenses %}
+    <tr>
+        <td>{{ expense['name'] }}</td>
+        <td>${{ expense['amount'] }}</td>
+        <td>{{ expense['category'] }}</td>
+        <td>{{ expense['date'] }}</td>
+        <td>
+            <a href="/edit/{{ expense['id'] }}">Edit</a>
+            <form action="/delete/{{ expense['id'] }}" method="POST" style="display:inline">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
 </body>
 </html>
